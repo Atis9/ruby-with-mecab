@@ -34,4 +34,4 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
       - name: Test
-        run: docker run --rm localhost:5000/atis9/ruby-with-mecab:test ruby -e "require 'natto'; nm = Natto::MeCab.new; exit(1) if nm.version != '0.996';"
+        run: docker run --rm localhost:5000/atis9/ruby-with-mecab:test ruby -e "require 'natto'; nm = Natto::MeCab.new; exit(1) if nm.version != '0.997';"
