@@ -1,0 +1,20 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main", "ruby*.*.*" ]
+  pull_request:
+    branches: [ "*" ]
+
+jobs:
+
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ruby-with-mecab:test
+    - name: Test
+      run: docker run --rm ruby-with-mecab:test ruby -e "require 'natto'; nm = Natto::MeCab.new; exit(1) if nm.version != '0.996';"
